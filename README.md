@@ -169,14 +169,14 @@ Use `npm run clean` to remove them before committing or sharing the repository.
 
 ## Test types
 
-Accessibility: Axe scans run in `tests/a11y/` and attach violations to the report.
-Visual regression: `tests/visual/` uses `toHaveScreenshot` with a dedicated `visual` project.
-API contract: `zod` schemas validate API responses in `tests/utils/restful-booker.schemas.ts`.
-Test data: `@faker-js/faker` data factories live in `tests/data/factories/`.
-Traceability: API tests attach payloads and responses to the report for fast debugging.
-Performance smoke: lightweight timing checks live in `tests/perf/`.
-Auth state: `tests/global-setup.ts` creates a storage state for authenticated tests in `tests/auth/`.
-Network mocking: `tests/ui/automation-exercise/home.network-mock.spec.ts` is a mock demo that uses `page.route` to stub an API response and injects it into the UI for deterministic checks (the demo site does not call this API on its own).
+- Accessibility: Axe scans run in `tests/a11y/` and attach violations to the report.
+- Visual regression: `tests/visual/` uses `toHaveScreenshot` with a dedicated `visual` project.
+- API contract: `zod` schemas validate API responses in `tests/utils/restful-booker.schemas.ts`.
+- Test data: `@faker-js/faker` data factories live in `tests/data/factories/`.
+- Traceability: API tests attach payloads and responses to the report for fast debugging.
+- Performance smoke: lightweight timing checks live in `tests/perf/`.
+- Auth state: `tests/global-setup.ts` creates a storage state for authenticated tests in `tests/auth/`.
+- Network mocking: `tests/ui/automation-exercise/home.network-mock.spec.ts` is a mock demo that uses `page.route` to stub an API response and injects it into the UI for deterministic checks (the demo site does not call this API on its own).
 
 ## Highlights
 
