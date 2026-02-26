@@ -1,0 +1,11 @@
+node_modules/
+playwright-report/
+test-results/
+.auth/
+tests/.auth/
+.env
+.DS_Store
+artifacts/
+!artifacts/
+!artifacts/csv/
+!artifacts/csv/portfolio-results.csv
