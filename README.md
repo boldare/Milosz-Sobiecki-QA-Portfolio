@@ -8,6 +8,32 @@ A comprehensive Playwright portfolio built on public demo sites. The goal is to 
 - UI/E2E: `https://automationexercise.com` (e-commerce flows)
 - API: `https://restful-booker.herokuapp.com` (CRUD + auth)
 
+## Test types
+
+- Accessibility: Axe scans run in `tests/a11y/` and attach violations to the report.
+- Visual regression: `tests/visual/` uses `toHaveScreenshot` with a dedicated `visual` project.
+- API contract: `zod` schemas validate API responses in `tests/utils/restful-booker.schemas.ts`.
+- Test data: `@faker-js/faker` data factories live in `tests/data/factories/`.
+- Traceability: API tests attach payloads and responses to the report for fast debugging.
+- Performance smoke: lightweight timing checks live in `tests/perf/`.
+- Auth state: `tests/global-setup.ts` creates a storage state for authenticated tests in `tests/auth/`.
+- Network mocking: `tests/ui/automation-exercise/home.network-mock.spec.ts` is a mock demo that uses `page.route` to stub an API response and injects it into the UI for deterministic checks (the demo site does not call this API on its own).
+
+## Highlights
+
+- Stable locators (`getByRole`, `getByLabel`, `getByPlaceholder`)
+- Page Object Model structure for all UI tests
+- `test.step` for clean logs
+- API CRUD with separate JSON payloads
+- Artifacts: trace, screenshot, and video on failure
+
+## Design decisions
+
+- UI tests use Page Objects to keep selectors and flows centralized.
+- API tests use a small client class plus Zod schemas for contract checks.
+- Performance tests use soft assertions to avoid unnecessary flakiness.
+- Tagging (`@smoke`, `@ui`, `@api`, `@a11y`, `@perf`, `@visual`, `@auth`, `@mock`) keeps large suites easy to slice.
+
 ## Structure
 
 - `playwright.config.ts` - test configuration, browser projects, reporters
@@ -167,31 +193,6 @@ Linting and formatting are enforced via ESLint + Prettier. A Husky pre-commit ho
 Generated runtime artifacts are stored in `playwright-report/`, `test-results/`, `artifacts/`, and `tests/.auth/`.
 Use `npm run clean` to remove them before committing or sharing the repository.
 
-## Test types
-
-- Accessibility: Axe scans run in `tests/a11y/` and attach violations to the report.
-- Visual regression: `tests/visual/` uses `toHaveScreenshot` with a dedicated `visual` project.
-- API contract: `zod` schemas validate API responses in `tests/utils/restful-booker.schemas.ts`.
-- Test data: `@faker-js/faker` data factories live in `tests/data/factories/`.
-- Traceability: API tests attach payloads and responses to the report for fast debugging.
-- Performance smoke: lightweight timing checks live in `tests/perf/`.
-- Auth state: `tests/global-setup.ts` creates a storage state for authenticated tests in `tests/auth/`.
-- Network mocking: `tests/ui/automation-exercise/home.network-mock.spec.ts` is a mock demo that uses `page.route` to stub an API response and injects it into the UI for deterministic checks (the demo site does not call this API on its own).
-
-## Highlights
-
-- Stable locators (`getByRole`, `getByLabel`, `getByPlaceholder`)
-- Page Object Model structure for all UI tests
-- `test.step` for clean logs
-- API CRUD with separate JSON payloads
-- Artifacts: trace, screenshot, and video on failure
-
-## Design decisions
-
-- UI tests use Page Objects to keep selectors and flows centralized.
-- API tests use a small client class plus Zod schemas for contract checks.
-- Performance tests use soft assertions to avoid unnecessary flakiness.
-- Tagging (`@smoke`, `@ui`, `@api`, `@a11y`, `@perf`, `@visual`, `@auth`, `@mock`) keeps large suites easy to slice.
 
 ## Notes
 
